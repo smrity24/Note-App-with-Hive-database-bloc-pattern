@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
 import 'bloc/note_bloc.dart';
 import 'bloc/note_event.dart';
 import 'models/note_model.dart';
@@ -10,14 +9,14 @@ import 'note_database/note_database.dart';
 import 'screens/notes_screen.dart';
 
 void main() async {
- await Hive.initFlutter();
- Hive.registerAdapter<Note>(NoteAdapter());
- await Hive.openBox<Note>("Note");
+  await Hive.initFlutter();
+  Hive.registerAdapter<Note>(NoteAdapter());
+  await Hive.openBox<Note>("Note");
 
- runApp(BlocProvider(
-   create: (context) => NoteBloc(NoteDatabase()),
-   child: MyApp(),
- ));
+  runApp(BlocProvider(
+    create: (context) => NoteBloc(NoteDatabase()),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Color(0xFF83c5be),
         //accentColor: Color(0xFF52616b),
       ),
-      home: MyHomePage(),
+      home: NotesScreen(),
     );
   }
 }
@@ -44,4 +43,3 @@ class MyHomePage extends StatelessWidget {
     return Container();
   }
 }
-
